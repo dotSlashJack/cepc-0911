@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="php-xxx.jackhester.com"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="https://php-xxx.jackhester.com">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Syllabus</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Videos</a>
-          </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Assignments
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Final Project</a> <!--todo: enable when close to project due date-->
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Quizzes+Answers</a> <!--todo: enable when close to project due date-->
-                </li>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <head>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script> 
+        $(function(){
+            $("#navbar").load("navbar.html");  
+        });
+        </script>
+    <div id="navbar"></div>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h4>Welcome to PHP-XXX: "From idea to publication: bulding your own research project!"</h4>
+            
+            <h4>Description</h4>
+            <p>TBA</p>
+            <p>You can navigate to the course calendar, syllabus, and assignment details using the links in the navigation bar above. Canvas will be used to submit assignments, take quizzes, and receive grades. I will also maintain a copy of the syllabus on Canvas. If any changes to the schedule are made, they will be refelected on this website. In the case that any substantial chage to the syllabus needs to be made (which I do not anticipate), I will notify you as soon as possible.</p>
+            
+            <h4>Grading</h4>
+            <p>Participation and peer collaboration: 25%</p>
+            <p>Quizzes: 10%</p>
+            <p>Homework modules/assignments: 15%</p>
+            <p>Final project (written work): 40%</p>
+            <p>Project presentation and publication: 10%</p>
+            <p>More details can be found in the syllabus.</p>
+
+            <h4>Contact</h4>
+            <p>Contact information is on the <a href="https://php-xxx.jackhester.com/syllabus">syllabus [update link with course num]</a> and in class.</p>
+
+            <h4>Other information</h4>
+            <p>You can find/download all of the files for this course website and all of the assignment files on <a href="">this github source page</a>.</p>
+            <p>I hope you enjoy the class!</p>
+        </div>
+    </body>
 </html>
