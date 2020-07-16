@@ -1,0 +1,165 @@
+---
+title: "HW4: Hypothesis Testing and Stats"
+author: "Jack Hester"
+date: "7/15/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#install.packages('ggplot2') # uncomment (remove the #) if you get an error about ggplot2 not being installed
+library(ggplot2)
+#install.packages('reshape2') # uncomment and remove if you have an issue with loading reshape
+library(reshape2)
+set.seed(123)
+```
+
+### IMPORTANT: BEFORE YOU START YOU MUST RUN THE CODE BLOCK ABOVE (r setup) USING THE GREEN PLAY BUTTON AT THE RIGHT OR THE RUN BUTTON IN THE TOP TOOLBAR. IF YOU DO NOT, SOME OF YOUR ANSWERS WILL BE WRONG AND YOU WILL ENCOUTNER BUGS. Once you have done this, please remove this text block :)
+
+
+# Introduction 
+
+This homework will give you more experience using R/Markdown and executing statistical tests in R. You will work through some sample data and perform EDA and tests, and then interpret results to draw inferences.
+
+#### How to submit
+
+You should \textbf{complete all of this R Markdown file} (fill in the missing code, answer the questions, etc.) and then \textbf{knit this file to an html or pdf document}. You wil \textbf{upload this file to canvas} using the submission link on Canvas/the course website.
+
+# Basic commands
+
+Before we continue, let's cover a few basic statistical commands in R. Below I will generate a random data set. It will be stored in the variable "sample". Run the code block using the little green play button. You should see the values show up below the code block.
+
+```{r introduction, echo=F, results='hide'}
+set.seed(123)
+sample <- sample(1:1000, 20, replace=TRUE)
+sample
+```
+
+As you may already know, it's often useful to calculate mean, median, and/or standard deviation when you're examining a dataset.
+
+# Q1:
+
+Using the mean, median, and standard deviation commands, please calculate the mean, median, and standard deviation commands in R. You can look up how to use these commands on the "sample" variable using the ? command (ex. ?mean). You might need to look up the standard deviation command in R (hint: it's 2 letters!). Run the code and then write what the mean, median, and standard deviation are below the code block (using text just like this).
+
+# a)
+
+```{r q1}
+# add your code here
+
+```
+
+
+# b)
+
+What is the samle size? How many degrees of freedom does this sample have?
+
+
+
+# Q2:
+
+Next, let's learn how to use box plots! First, you'll need to import the .csv file I've created for this assignment. Download the file, and then import it below using the read.csv command. 
+
+This csv provides information on average test scores on an exam for fifty right-handed and fifty left-handed students. Once you've imported the csv, you will see "scores.table" show up in the "environment" section in the top right of your RStudio window. Clicking this will open the csv so you can look at it and see the variable names. Alternatively in the console below, you can type "View(scores.table)"
+
+# a)
+
+```{r q2a}
+# update code below with YOUR path to the csv file
+scores.table <- read.csv("your\ path/to/test_scores.csv")
+```
+
+What are the two variable names shown explicitely in the table (hint: column names)? What's the independent/predictor variable? What's the outcome/dependent variable? (Hint: the outcome variable is not expicitely labeled in the table but you can explain it based on the description above, but the predictors are shown as variable names)
+
+
+
+# b)
+
+Let's do the first bit of exploratory data analysis: generating histograms. We'll just use the hist() command to save a bit of time, but you might want to use ggplot2's geom_histogram() option in the fugure to make your plots look nicer. Run the code below and take a look at the charts.
+
+```{r q2b}
+hist(scores.table$right_handed, breaks=20)
+hist(scores.table$left_handed, breaks=20)
+```
+
+What are your impressions? Do the outcome variables look approximately normally distributed? (hint: it doesn't have to be a perfect bell curve!)
+
+# c)
+
+Now let's actually generate the boxplot. I am providing the skeleton of the code you'll need, you just need to fill in the variables! Make sure you run the code block with "melt" before completing your code portion. Once you've updated the scores table, take anohter look at it. Change table_name to the correct name, and set x= to x=<independent/predictor column name> and y= to y=<dependent/output column name>.
+
+
+
+```{r q2cSetup}
+# this first command restructures the data in a way that makes it possible to use ggplot. You can take a look at what happened here if you like!
+melted.scores.table <- melt(scores.table, variable.name = "handed", value.name = "score")
+```
+
+
+```{r q2c}
+# Update code below with the correct table and x and y values
+# the table name is a little different now! (see the code block above)
+# if you're confused about aes(x,y) look at the ggplot documentation and at the way the new table is structured
+ggplot<TABLE NAME>, aes(x=<INDEP COLUMN NAME>, y=<DEPENDENT COLUMN NAME>)) + 
+  geom_boxplot()
+
+```
+
+
+# d)
+
+Now that you have the boxplots generated, what are your impressions? Do the median values look significantly different? Do you think one of the groups (right or left handed) performed better on the exam?
+
+
+
+# Q3: 
+
+We've done a bit of EDA now, so let's perform a statistical test and interpret the results! Specifically, we'll be using a t-test.
+
+# a)
+
+First, based on the description of the data above, which kind of t-test do you think we should use, and why? (one-sample, 2-sample, or paired?) Hint: think about how many unique populations of individuals are in the dataset (is it one or two?)
+
+# b)
+
+What are the assumptions of this test? (You can assume they are true in subsequent steps)
+
+
+# c)
+
+Let's run the test and see some results--finally! Update the paired=[TRUE/FALSE] to only TRUE or FALSE depending on whether or not you think it's a paired test. Pay attention to the syntax here as it's useful if you need to run a t-test in the future!
+
+```{r}
+set.seed(123)
+# update the "true/false" to be only TRUE (if you think it's paired) or FALSE (if you don't think it's paired)
+t.test(scores.table$right_handed, scores.table$left_handed,paired=[TRUE or FALSE])
+```
+
+
+Now that you've gotten the results, what is the p-value and what is the confidence interval? Does the p-value show a statistically significant difference in results between the two groups (right or left handed)? How about the confidence interval? For both, why or why not? Assume a significance level of $\alpha$ = 0.05 (5%). Remember, you compare the p-value to the significance level, and look for zero in the confidence interval.
+
+
+
+# d)
+
+I'll show you a common way to report statistical findings when you've run a t-test. First, you might need some summary statistics: the mean, the standard deviation, and the degrees of freedom for the samples. Recall: n (sample size for both) is 50. You can run the same commands to get these as you did in question 1.
+
+```{r}
+# optionally run summary commands here
+
+```
+
+
+Use the format: t(degress of freedom) = the t statistic, p < .05 or p > .05. Fill in the missing details and write the sentence below.
+
+
+
+Then write the following with the correct answer:
+
+There was/was not a statistically significant difference in test performance between left and right handed students.
+
+
+If and only if your findings were statistically significant, also fill in the following sentence. If not, don't include the sentence. Either way, make sure you reveiew the sentence so you get the general idea of how to report t-test results.
+
+The 50 participants who were right or left-handed (M = mean, SD = std. dev.) compared to the 50 participants in the right or left-handed group (std. dev.) demonstrated statistially significantly higher, t(deg freedom) = t statistic, p < or p > value.
+
+##### Congrats! You've worked through the process of exploring data and running a statistical test!
+
