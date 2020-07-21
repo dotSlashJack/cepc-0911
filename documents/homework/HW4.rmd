@@ -98,7 +98,7 @@ melted.scores.table <- melt(scores.table, variable.name = "handed", value.name =
 # Update code below with the correct table and x and y values
 # the table name is a little different now! (see the code block above)
 # if you're confused about aes(x,y) look at the ggplot documentation and at the way the new table is structured
-ggplot<TABLE NAME>, aes(x=<INDEP COLUMN NAME>, y=<DEPENDENT COLUMN NAME>)) + 
+ggplot(<TABLE NAME>, aes(x=<INDEP COLUMN NAME>, y=<DEPENDENT COLUMN NAME>)) + 
   geom_boxplot()
 
 ```
